@@ -1,0 +1,4 @@
+mission1:
+  enabled: true
+  name: obstacle_course
+  status: interface_only

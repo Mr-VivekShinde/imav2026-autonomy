@@ -1,0 +1,10 @@
+newmtl aruco_texture
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+map_Kd ../materials/textures/aruco_id1.png
+
+newmtl white
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0

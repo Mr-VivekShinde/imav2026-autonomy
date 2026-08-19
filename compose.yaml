@@ -1,0 +1,28 @@
+services:
+  sim:
+    build:
+      context: .
+      dockerfile: docker/sim.Dockerfile
+      args:
+        ROS_DISTRO: jazzy
+        PX4_TAG: v1.17.0
+        MAVSDK_PYTHON: 3.17.2
+    image: imav2026/sim:local
+    container_name: imav2026-sim
+    network_mode: host
+    ipc: host
+    tty: true
+    stdin_open: true
+    command: sleep infinity
+    working_dir: /workspace
+    environment:
+      DISPLAY: ${DISPLAY:-:0}
+      QT_X11_NO_MITSHM: "1"
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-26}
+      IMAV_WORLD: ${IMAV_WORLD:-imav2026_indoor}
+      IMAV_VEHICLE_NAME: ${IMAV_VEHICLE_NAME:-x500}
+    volumes:
+      - ./:/workspace:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    devices:
+      - /dev/dri:/dev/dri

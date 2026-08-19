@@ -1,0 +1,19 @@
+sensors:
+  front_d435i:
+    frame_id: camera_front_link
+    rgb_topic: /camera/front/rgb
+    depth_topic: /camera/front/depth
+    enabled_in_simulation: true
+  bottom_d435i:
+    frame_id: camera_bottom_link
+    rgb_topic: /camera/bottom/rgb
+    depth_topic: /camera/bottom/depth
+    enabled_in_simulation: true
+  mlx90614:
+    frame_id: mlx90614_link
+    raw_sim_topic: /MLX90614/thermal_image
+    mission_temperature_topic: /MLX90614/obj_temp
+    note: Do not use thermal-image pixel position in mission logic; the real sensor is not a thermal camera.
+  ark_flow:
+    frame_id: ark_flow_link
+    note: Existing Gazebo optical-flow + downward range approximation is retained until hardware parameters are measured.

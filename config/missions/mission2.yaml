@@ -1,0 +1,4 @@
+mission2:
+  enabled: true
+  name: dark_room_inspection
+  status: interface_only

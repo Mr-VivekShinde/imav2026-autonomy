@@ -1,0 +1,30 @@
+name: static-checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  repository-sanity:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile project Python scripts
+        run: python3 -m compileall -q scripts
+      - name: Parse baseline world and model metadata
+        run: |
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          files = [Path('simulation/worlds/imav_2026.sdf')]
+          files += list(Path('simulation/models').rglob('model.config'))
+          for path in files:
+              ET.parse(path)
+          print(f'Parsed {len(files)} baseline XML files successfully')
+          PY
+      - name: Verify required baseline files
+        run: |
+          test -f simulation/worlds/imav_2026.sdf
+          test -f simulation/models/x500_flow/model.sdf
+          test -f simulation/bridge/gz_bridge.yaml
+          test -f config/versions.env

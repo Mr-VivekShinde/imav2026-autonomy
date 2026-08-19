@@ -1,0 +1,10 @@
+vehicle:
+  name: x500_reference
+  role: temporary_simulation_vehicle
+  px4_airframe_id: 4001
+  px4_gz_model_name: x500
+  takeoff_altitude_m: 1.2
+  notes: >-
+    Temporary reference vehicle only. Replace its geometry and dynamics with
+    the real IMAV drone after CAD dimensions, measured mass, center of gravity,
+    inertia estimate, and motor-center positions are available.

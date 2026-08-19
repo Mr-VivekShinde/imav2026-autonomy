@@ -1,0 +1,41 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Optional local Python environment (not used by ROS runtime)
+.venv/
+
+# Simulation-generated files
+simulation/worlds/imav_2026_random.sdf
+*.log
+
+# Flight/simulation logs: keep outside Git
+rosbags/
+flight_logs/
+*.bag
+*.db3
+*.mcap
+*.ulg
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / local overrides
+.env
+*.secret
+*.pem

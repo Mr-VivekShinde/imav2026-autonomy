@@ -1,0 +1,7 @@
+mission3:
+  enabled: true
+  name: hot_spot_drop
+  status: interface_only
+  hot_temperature_min_c: 70.0
+  hot_temperature_max_c: 100.0
+  red_led_required: true

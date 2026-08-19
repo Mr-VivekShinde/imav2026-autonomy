@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="cone">
+    <link name="cone_link">
+      <pose>0 0 0 0 3.14159 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.007</mass>
+        <inertia>
+          <ixx>0.000004</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000004</iyy>
+          <iyz>0</iyz>
+          <izz>0.000002</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_base">
+        
+        <geometry>
+          <mesh>
+            <uri>model://cone/meshes/cone.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cone/meshes/cone.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

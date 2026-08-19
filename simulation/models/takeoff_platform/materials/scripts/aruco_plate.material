@@ -1,0 +1,14 @@
+material ArucoPlate/ID0
+{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture aruco_id0.png
+                filtering trilinear
+            }
+        }
+    }
+}
