@@ -57,6 +57,20 @@ RUN git clone --branch ${PX4_TAG} --depth 1 --recursive \
     && bash Tools/setup/ubuntu.sh --no-nuttx \
     && make px4_sitl_default -j2
 
+# PX4 v1.17 uses Micro XRCE-DDS v2.x.
+# ROS 2 Jazzy is compatible with Micro XRCE-DDS Agent v2.4.3.
+ARG MICRO_XRCE_DDS_AGENT_TAG=v2.4.3
+RUN git clone --branch ${MICRO_XRCE_DDS_AGENT_TAG} --depth 1 \
+      https://github.com/eProsima/Micro-XRCE-DDS-Agent.git /opt/Micro-XRCE-DDS-Agent \
+    && cd /opt/Micro-XRCE-DDS-Agent \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+    && make -j2 \
+    && make install \
+    && ldconfig \
+    && rm -rf /opt/Micro-XRCE-DDS-Agent
+
 # Keep Python application dependencies separate from system OpenCV/cv_bridge.
 # --break-system-packages is required on Ubuntu 24.04's externally-managed Python.
 RUN python3 -m pip install --no-cache-dir --break-system-packages \
