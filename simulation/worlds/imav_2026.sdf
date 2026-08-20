@@ -17,10 +17,6 @@
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
     
 </plugin>
-    <plugin filename="gz-sim-thermal-system" name="gz::sim::systems::Thermal">
-      <render_engine>ogre2</render_engine>
-    </plugin>
-    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel" />
     <gui fullscreen="false">
       <plugin filename="MinimalScene" name="3D View">
         <gz-gui>
@@ -158,9 +154,10 @@
     </gui>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type="adiabatic" />
-    <temperature>288.15</temperature>
-    <temperature_gradient>0.1</temperature_gradient>
+    <atmosphere type="adiabatic">
+      <temperature>288.15</temperature>
+      <temperature_gradient>0.1</temperature_gradient>
+    </atmosphere>
     <scene>
       <grid>false</grid>
       <ambient>0.4 0.4 0.4 1</ambient>
@@ -450,7 +447,8 @@
       <world_frame_orientation>ENU</world_frame_orientation>
       <latitude_deg>47.397971057728974</latitude_deg>
       <longitude_deg> 8.546163739800146</longitude_deg>
-      <altitude>0</altitude>
+      <elevation>0</elevation>
     </spherical_coordinates>
   </world>
 </sdf>
+
