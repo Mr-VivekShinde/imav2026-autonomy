@@ -28,8 +28,18 @@ ament_target_dependencies(offboard_heartbeat
   px4_msgs
 )
 
+
+add_executable(offboard_stationary
+  src/offboard_stationary.cpp
+)
+
+ament_target_dependencies(offboard_stationary
+  rclcpp
+  px4_msgs
+)
+
 install(
-  TARGETS px4_interface_monitor offboard_heartbeat
+  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary
   DESTINATION lib/${PROJECT_NAME}
 )
 
