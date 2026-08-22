@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>imav_flight_interface</name>
+  <version>0.1.0</version>
+  <description>ROS 2 boundary between IMAV autonomous mission software and PX4.</description>
+  <maintainer email="imav2026@example.com">IMAV 2026 Team</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>px4_msgs</depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
