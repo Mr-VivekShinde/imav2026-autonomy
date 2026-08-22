@@ -38,8 +38,18 @@ ament_target_dependencies(offboard_stationary
   px4_msgs
 )
 
+
+add_executable(vehicle_command_probe
+  src/vehicle_command_probe.cpp
+)
+
+ament_target_dependencies(vehicle_command_probe
+  rclcpp
+  px4_msgs
+)
+
 install(
-  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary
+  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary vehicle_command_probe
   DESTINATION lib/${PROJECT_NAME}
 )
 
