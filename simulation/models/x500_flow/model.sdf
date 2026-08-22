@@ -1,94 +1,136 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  IMAV 2026 FINAL SENSOR-EQUIPPED VEHICLE
+
+  VERIFIED progressively in Steps 11B–11E:
+
+      stock x500
+      + optical flow
+      + front RealSense D435i
+      + bottom RealSense D435i
+      + MLX90614
+
+  Intentionally excluded:
+      - cone
+      - detachable payload
+      - extra lidar
+
+  Motor plugins use robotNamespace = x500_flow.
+-->
+
 <sdf version="1.9">
+
   <model name="x500_flow">
+
     <self_collide>false</self_collide>
+
+
+    <!-- =====================================================
+         FLIGHT-TESTED X500 BASE
+         ===================================================== -->
+
     <include merge="true">
-      <uri>model://x500</uri>
+      <uri>model://x500_flow_base</uri>
     </include>
+
+
+    <!-- =====================================================
+         OPTICAL FLOW
+         ===================================================== -->
+
     <include merge="true">
       <uri>model://optical_flow</uri>
-      <pose relative_to="base_link">0.05 0 -0.1 0 0 0</pose>
+
+      <pose relative_to="base_link">
+        0.05 0 -0.1 0 0 0
+      </pose>
     </include>
-    <include merge="true">
-      <uri>model://Realsense_d435i_down</uri>
-      <pose relative_to="base_link">0 0 -0.1 0 1.57 0</pose>
-    </include>
-    <include merge="true">
-      <uri>model://MLX90614</uri>
-      <pose relative_to="base_link">-0.05 0 -0.1 0 0 0</pose>
-    </include>
-    <include merge="true">
-      <uri>model://Realsense_d435i_front</uri>
-      <pose relative_to="base_link">0.2 0.03 0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://cone</uri>
-      <pose relative_to="base_link">-0.03 0.04 -0.1 0 0 0</pose>
-    </include>
+
     <joint name="optical_flow_joint" type="fixed">
+
       <parent>base_link</parent>
       <child>flow_link</child>
-      <pose relative_to="base_link">0.05 0 -0.1 0 0 0</pose>
+
+      <pose relative_to="base_link">
+        0.05 0 -0.1 0 0 0
+      </pose>
+
     </joint>
-    <joint name="realsense_down_joint" type="fixed">
-      <parent>base_link</parent>
-      <child>realsense_down_link</child>
-      <pose relative_to="base_link">0 0 -0.1 0 1.57 0</pose>
-    </joint>
-    <joint name="mlx90614_joint" type="fixed">
-      <parent>base_link</parent>
-      <child>MLX90614_link</child>
-      <pose relative_to="base_link">-0.05 0 -0.1 0 1.57 0</pose>
-    </joint>
+
+
+    <!-- =====================================================
+         FRONT REALSENSE D435i
+         ===================================================== -->
+
+    <include merge="true">
+      <uri>model://Realsense_d435i_front</uri>
+
+      <pose relative_to="base_link">
+        0.2 0.03 0 0 0 0
+      </pose>
+    </include>
+
     <joint name="realsense_front_joint" type="fixed">
+
       <parent>base_link</parent>
       <child>realsense_front_link</child>
-      <pose relative_to="base_link">0.1 0.03 0.3 0 0 0</pose>
+
+      <pose relative_to="base_link">
+        0.1 0.03 0.3 0 0 0
+      </pose>
+
     </joint>
-    <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
-      <parent_link>base_link</parent_link>
-      <child_model>cone</child_model>
-      <child_link>cone_link</child_link>
-      <detach_topic>/cone/detach</detach_topic>
-    </plugin>
-    <link name="lidar_sensor_link">
-      <pose relative_to="base_link">0 0 -0.05 0 1.57 0</pose>
-      <inertial>
-        <mass>0.001</mass>
-        <inertia>
-          <ixx>0.00001</ixx>
-          <iyy>0.00001</iyy>
-          <izz>0.00001</izz>
-        </inertia>
-      </inertial>
-      <sensor name="lidar" type="gpu_lidar">
-        <pose>0 0 0 3.14 0 0</pose>
-        <update_rate>50</update_rate>
-        <ray>
-          <scan>
-            <horizontal>
-              <samples>1</samples>
-              <min_angle>0</min_angle>
-              <max_angle>0</max_angle>
-            </horizontal>
-            <vertical>
-              <samples>1</samples>
-              <min_angle>0</min_angle>
-              <max_angle>0</max_angle>
-            </vertical>
-          </scan>
-          <range>
-            <min>0.1</min>
-            <max>100</max>
-          </range>
-        </ray>
-        <always_on>1</always_on>
-        <visualize>true</visualize>
-      </sensor>
-    </link>
-    <joint name="lidar_joint" type="fixed">
+
+
+    <!-- =====================================================
+         BOTTOM REALSENSE D435i
+         ===================================================== -->
+
+    <include merge="true">
+      <uri>model://Realsense_d435i_down</uri>
+
+      <pose relative_to="base_link">
+        0 0 -0.1 0 1.57 0
+      </pose>
+    </include>
+
+    <joint name="realsense_down_joint" type="fixed">
+
       <parent>base_link</parent>
-      <child>lidar_sensor_link</child>
+      <child>realsense_down_link</child>
+
+      <pose relative_to="base_link">
+        0 0 -0.1 0 1.57 0
+      </pose>
+
     </joint>
+
+
+    <!-- =====================================================
+         MLX90614 THERMAL SENSOR
+         ===================================================== -->
+
+    <include merge="true">
+      <uri>model://MLX90614</uri>
+
+      <pose relative_to="base_link">
+        -0.05 0 -0.1 0 0 0
+      </pose>
+    </include>
+
+    <joint name="mlx90614_joint" type="fixed">
+
+      <parent>base_link</parent>
+      <child>MLX90614_link</child>
+
+      <pose relative_to="base_link">
+        -0.05 0 -0.1 0 1.57 0
+      </pose>
+
+    </joint>
+
+
   </model>
+
 </sdf>
