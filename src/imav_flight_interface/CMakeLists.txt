@@ -48,8 +48,18 @@ ament_target_dependencies(vehicle_command_probe
   px4_msgs
 )
 
+
+add_executable(arm_disarm_probe
+  src/arm_disarm_probe.cpp
+)
+
+ament_target_dependencies(arm_disarm_probe
+  rclcpp
+  px4_msgs
+)
+
 install(
-  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary vehicle_command_probe
+  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary vehicle_command_probe arm_disarm_probe
   DESTINATION lib/${PROJECT_NAME}
 )
 
