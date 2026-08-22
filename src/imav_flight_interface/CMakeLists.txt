@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
+
 project(imav_flight_interface)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -8,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(px4_msgs REQUIRED)
+
 
 add_executable(px4_interface_monitor
   src/px4_interface_monitor.cpp
@@ -58,8 +60,26 @@ ament_target_dependencies(arm_disarm_probe
   px4_msgs
 )
 
+
+add_executable(takeoff_hover_land
+  src/takeoff_hover_land.cpp
+)
+
+ament_target_dependencies(takeoff_hover_land
+  rclcpp
+  px4_msgs
+)
+
+
 install(
-  TARGETS px4_interface_monitor offboard_heartbeat offboard_stationary vehicle_command_probe arm_disarm_probe
+  TARGETS
+    px4_interface_monitor
+    offboard_heartbeat
+    offboard_stationary
+    vehicle_command_probe
+    arm_disarm_probe
+    takeoff_hover_land
+
   DESTINATION lib/${PROJECT_NAME}
 )
 
